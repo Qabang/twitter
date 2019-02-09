@@ -1,0 +1,19 @@
+<a href="/"> <- Back to twittrers</a>
+<center>
+
+
+<h1>{{username}}</h1>
+<h2>Name: {{author}}</h2>
+</center>
+<ul>
+     
+    {{#each tweets as |tweet i|}}
+        <li>
+           id:<font color="green">{{tweet.id}}</font>
+        </li>
+        <li>
+           <font color="green">{{tweet.content}}</font><br><br><br>
+        </li>
+        
+    {{/each}}
+</ul>
