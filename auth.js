@@ -1,6 +1,5 @@
 const crypto = require('crypto')
 const models = require('./models')
-// const bodyParser = require('body-parser')
 
 module.exports = (req,res,next)=>{
     models.User.findOne({

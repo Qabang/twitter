@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const fs = require('fs')
 
-const connection = new Sequelize('books', 'root', '', {
+const connection = new Sequelize('twitter_uppg', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   logging: () => {},

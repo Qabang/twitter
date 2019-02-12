@@ -9,10 +9,11 @@ router.get('/', (req, res) => {
     models.User.findAll({
       attributes: [ 'name', 'username' ]
     }).then(users => {
-      res.render('home', {
-        authors: users.map(users =>users.username),
-        
-      })
+      res.json({
+          authors: users.map(users =>users.username),
+      }) 
+    }).catch(error=>{
+      res.status(500).send("Something went wrong")
     })
   })
  
@@ -29,21 +30,23 @@ router.get('/', (req, res) => {
         attributes: [ 'content', 'id' ]
       }).then(tweets => {
         console.log()
-        res.render('tweets', {
+        res.json({
           author:user.name,
           username:user.username,
-          tweetIds:tweets.map(tweets => tweets.id),
+          userId:user.id,
           tweets:tweets
         })
+      }).catch(error => {
+        res.status(500).send("Something went wrong")
       })
     })
   })
   
   
-  //create a new user aka twittrer
+  //create a new user
   router.post('/register', (req,res)=>{
-    //   res.json(req.body)
-      console.log(req.body)
+    // //   res.json(req.body)
+    //   console.log(req.body)
       const salt = crypto.randomBytes(256).toString('hex')
       const password = crypto.pbkdf2Sync(req.body.password, salt, 10000, 256, 'sha512').toString('hex')
     models.User.create({
